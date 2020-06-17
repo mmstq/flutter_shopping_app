@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e402e54a-475d-4f20-99f1-036e0423fcca" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../lib/Provider/SignInManually.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/Provider/SignInManually.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/UI/loginUI.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/UI/loginUI.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/UI/otp_dialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/UI/otp_dialog.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/Utils/data.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/Utils/data.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../pubspec.yaml" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Copy_of_Pixel_3a_XL_API_27" />
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/app">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.12.11/android">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="android" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="android" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="android" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="android" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="android" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" />
+        <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.12.9+4/android/build.gradle" />
+        <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.4.0+9/android/build.gradle" />
+        <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/firebase_storage-3.0.6/android/build.gradle" />
+        <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.6.1+4/android/build.gradle" />
+        <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.3.0/android/build.gradle" />
+        <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/share-0.6.2+1/android/build.gradle" />
+        <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.5.3+4/android/build.gradle" />
+        <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-5.1.3/android/build.gradle" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.12.11/android/build.gradle" />
+        <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-0.1.1+1/android/build.gradle" />
+        <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/firebase_storage-3.1.0/android/build.gradle" />
+        <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.4.3+1/android/build.gradle" />
+        <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.11.1+12/android/build.gradle" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.6.2+3/android/build.gradle" />
+        <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.5.1/android/build.gradle" />
+        <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/share-0.6.3+5/android/build.gradle" />
+        <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.5.6/android/build.gradle" />
+        <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_macos-0.0.1+3/android/build.gradle" />
+        <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_web-0.1.2+2/android/build.gradle" />
+        <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-5.4.1/android/build.gradle" />
+        <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_macos-0.0.1+2/android/build.gradle" />
+        <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_web-0.1.0+2/android/build.gradle" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="200" />
+    <option name="y" value="74" />
+    <option name="width" value="1200" />
+    <option name="height" value="675" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="android.sdk.path" value="$PROJECT_DIR$/../../../Android/Sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Gradle./media/lekr0/System/Ubuntu/StudioProjects/bb_flutter/android/app [signingReport]">
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="/media/lekr0/System/Ubuntu/StudioProjects/bb_flutter/android/app [signingReport]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/app" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="signingReport" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle./media/lekr0/System/Ubuntu/StudioProjects/bb_flutter/android/app [signingReport]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e402e54a-475d-4f20-99f1-036e0423fcca" name="Default Changelist" comment="" />
+      <created>1569128240231</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1569128240231</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1600" height="900" extended-state="6" />
+    <layout>
+      <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.14350064" />
+      <window_info id="Structure" order="2" side_tool="true" />
+      <window_info id="Build Variants" order="3" side_tool="true" />
+      <window_info id="Image Layers" order="4" />
+      <window_info id="Designer" order="5" />
+      <window_info id="Resources Explorer" order="6" />
+      <window_info id="Capture Tool" order="7" />
+      <window_info id="Favorites" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Run" order="0" sideWeight="0.4993565" weight="0.3285528" />
+      <window_info anchor="bottom" id="TODO" order="1" weight="0.32903227" />
+      <window_info anchor="bottom" id="Debug" order="2" />
+      <window_info anchor="bottom" id="Terminal" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.5006435" side_tool="true" weight="0.32903227" />
+      <window_info anchor="bottom" id="Flutter Performance" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="6" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.4993565" weight="0.31942633" />
+      <window_info anchor="bottom" id="Logcat" order="8" sideWeight="0.4993565" weight="0.32903227" />
+      <window_info anchor="bottom" id="Android Profiler" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Find" order="10" />
+      <window_info anchor="right" id="Capture Analysis" order="0" />
+      <window_info anchor="right" id="Gradle" order="1" visible="true" weight="0.24903475" />
+      <window_info anchor="right" id="Theme Preview" order="2" />
+      <window_info anchor="right" id="Flutter Inspector" order="3" />
+      <window_info anchor="right" id="Flutter Outline" order="4" />
+      <window_info anchor="right" id="Key Promoter X" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Device File Explorer" order="7" side_tool="true" />
+      <window_info anchor="right" id="Android WiFi ADB" order="8" />
+    </layout>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.12.9+4/android/build.gradle" />
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.12.9+4/android/settings.gradle" />
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.12.9+4/android/user-agent.gradle" />
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.4.0+9/android/build.gradle" />
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/firebase_storage-3.0.6/android/settings.gradle" />
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/firebase_storage-3.0.6/android/build.gradle" />
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.6.1+4/android/build.gradle" />
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.3.0/android/settings.gradle" />
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/share-0.6.2+1/android/build.gradle" />
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.5.3+4/android/build.gradle" />
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-5.1.3/android/build.gradle" />
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.3.0/android/build.gradle" />
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.12.11/android/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.11.1+12/android/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="49" column="39" selection-start-line="49" selection-start-column="39" selection-end-line="49" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.4.3+1/android/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-472">
+          <caret line="34" column="45" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-0.1.1+1/android/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="10" column="51" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/firebase_storage-3.1.0/android/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="44" column="41" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.6.2+3/android/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="38" column="40" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.5.1/android/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="584">
+          <caret line="45" column="43" selection-start-line="45" selection-start-column="43" selection-end-line="45" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/share-0.6.3+5/android/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-927">
+          <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.5.6/android/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-480">
+          <caret line="10" column="51" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_macos-0.0.1+3/android/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_web-0.1.2+2/android/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-266">
+          <caret line="10" column="51" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-5.4.1/android/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_macos-0.0.1+2/android/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-264">
+          <caret line="10" column="49" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_web-0.1.0+2/android/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-265">
+          <caret line="10" column="49" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="8" column="52" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="5" column="69" selection-start-line="5" selection-start-column="69" selection-end-line="5" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
