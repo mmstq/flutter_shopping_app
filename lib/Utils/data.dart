@@ -1,15 +1,15 @@
+import 'package:testcart/Model/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 bool isDark = true;
 String userUID;
-String phone = "+917011152375";
 final fFamily = "Ubuntu";
 double height = 0;
 double width = 0;
 SharedPreferences sharedPreference;
 String verificationId;
-final phoneHelperText = "Enter number w/o +91";
+List<Product> products=[];
 final loginDescription = "TestCart is your online store for Mobiles, Fashion, Electronics, Home Appliances, Books, Home, Furniture, Grocery, Jewelry, Sporting goods and much more";
 
 

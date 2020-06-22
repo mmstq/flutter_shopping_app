@@ -117,7 +117,6 @@ class ViewAll extends StatelessWidget {
   Widget getLikeButton(Color color, bool isLiked) {
     return LikeButton(
       size: 20,
-      isLiked: isLiked,
       circleColor: CircleColor(start: color, end: Colors.deepOrange),
       bubblesColor: BubblesColor(
         dotPrimaryColor: color,

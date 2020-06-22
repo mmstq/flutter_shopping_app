@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:testcart/Network/middleware.dart';
-import 'package:testcart/Response/login_response.dart';
+import 'package:testcart/Model/login_response.dart';
 import 'package:testcart/Utils/data.dart';
 import 'package:testcart/Utils/service.dart';
 import 'package:flutter/material.dart';

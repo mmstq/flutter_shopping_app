@@ -6,9 +6,11 @@ class Product {
   String afterPrice;
   String title;
   int category;
+  String categoryName;
 
   Product(
       {this.productId,
+        this.categoryName,
         this.images,
         this.mrp,
         this.discount,
@@ -24,6 +26,7 @@ class Product {
     afterPrice = json['after_price'];
     title = json['title'];
     category = json['category'];
+    categoryName = json['category_name'];
   }
 
   Map<String, dynamic> toJson() {
@@ -35,6 +38,7 @@ class Product {
     data['after_price'] = this.afterPrice;
     data['title'] = this.title;
     data['category'] = this.category;
+    data['category_name'] = this.categoryName;
     return data;
   }
 }

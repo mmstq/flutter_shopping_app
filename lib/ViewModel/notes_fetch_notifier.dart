@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:testcart/Utils/data.dart';
 import 'package:testcart/Model/product_model.dart';
 import 'package:testcart/Network/middleware.dart';
 import 'package:testcart/Utils/data.dart';
@@ -41,12 +42,14 @@ class ProductNotifier extends ChangeNotifier {
 
     if(category[0] == 1){
       _one = iterable.map((e) => Product.fromJson(e)).toList();
+      products += _one;
       setState(RequestState.Idle);
       await getProductCategory([2]);
 
     }
     else if(category[0] == 2){
       _two = iterable.map((e) => Product.fromJson(e)).toList();
+      products += _two;
       setState(RequestState.Idle);
       await getProductCategory([3]);
 
@@ -54,12 +57,14 @@ class ProductNotifier extends ChangeNotifier {
     }
     else if(category[0] == 3){
       _three = iterable.map((e) => Product.fromJson(e)).toList();
+      products += _three;
       setState(RequestState.Idle);
       await getProductCategory([4]);
 
 
     }else{
       _four = iterable.map((e) => Product.fromJson(e)).toList();
+      products += _four;
       setState(RequestState.Idle);
 
     }

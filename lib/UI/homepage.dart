@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:testcart/Model/product_model.dart';
-import 'package:testcart/Response/login_response.dart';
+import 'package:testcart/Model/login_response.dart';
 import 'package:testcart/UI/detailscreen.dart';
 import 'package:testcart/UI/view_all_product.dart';
 import 'package:testcart/Utils/data.dart';
@@ -727,7 +727,7 @@ class _HomePageState extends State<HomePage> {
       ),
       onTap: (bool isLiked) async {
 
-        Map userObject = json.decode(sharedPreference.getString('user')??"{}");
+        Map userObject = json.decode(sharedPreference.getString('user')??new User());
         var user = User.fromJson(userObject);
         if(isLiked){
           user.favorite.add(product.productId);

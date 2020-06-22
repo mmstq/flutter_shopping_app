@@ -1,4 +1,4 @@
-import 'package:testcart/UI/loginUI.dart';
+import 'package:testcart/UI/login_or_skip.dart';
 import 'package:testcart/UI/main_screen.dart';
 import 'package:testcart/Utils/data.dart';
 import 'package:testcart/main.dart';
