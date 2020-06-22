@@ -28,16 +28,7 @@ class MiddleWare {
     return _response;
   }
 
-  Future<http.Response> deleteNoteWithId(String token, String id) async {
-    final _response = await _api.delete(token, id);
-    return _response;
-  }
-
-  Future<http.Response> addFavorite(final Product product) async {
-    final _response = await _api.addFavorite(product);
-    return _response;
-  }
-  Future<http.Response> getProductCategory(List<int> category) async {
+  Future<http.Response> getProductCategory(int category) async {
     final _response = await _api.getProductCategory(category);
     return _response;
   }

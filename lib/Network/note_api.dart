@@ -9,13 +9,13 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class NoteAPI {
-  final _baseURL = 'https://zuko.eu-gb.mybluemix.net/';
+  final _baseURL = 'https://qikert.herokuapp.com/';
 
   Future<dynamic> login(Map user) async {
     http.Response _response;
     try {
       _response = await http
-          .post('https://qikert.herokuapp.com/' + "user/login", body: user);
+          .post(_baseURL + "user/login", body: user);
       _response = _responseCheck(_response);
     } on SocketException {
       throw FetchDataException("Not connected to internet");
@@ -28,7 +28,7 @@ class NoteAPI {
     try {
       final jsonEncoded =
       json.encode({"Query": 'product_id', "Value": products});
-      _response = await http.post(_baseURL + "product",
+      _response = await http.post(_baseURL + "products",
           body: jsonEncoded);
       _response = _responseCheck(_response);
     } on SocketException {
@@ -42,7 +42,7 @@ class NoteAPI {
     try {
       final jsonEncoded =
           json.encode({"Query": 'product_id', "Value": products});
-      _response = await http.post(_baseURL + "product",
+      _response = await http.post(_baseURL + "products",
           headers: {"Accept": "application/json"}, body: jsonEncoded);
       _response = _responseCheck(_response);
     } on SocketException {
@@ -51,25 +51,13 @@ class NoteAPI {
     return _response;
   }
 
-  Future<http.Response> getAllNotes(String token) async {
-    http.Response _response;
-    try {
-      _response = await http.get(_baseURL + "notes",
-          headers: {HttpHeaders.authorizationHeader: 'token $token'});
-      _response = _responseCheck(_response);
-    } on SocketException {
-      throw FetchDataException("Not connected to internet");
-    }
-    return _response;
-  }
-
-  Future<http.Response> getProductCategory(List<int> category) async {
+  Future<http.Response> getProductCategory(int category) async {
     http.Response _response;
     try {
       final jsonEncoded = json.encode({"Query": 'category', "Value": category});
       debugPrint(jsonEncoded);
       _response = await http.post(
-        _baseURL + "product",
+        _baseURL + "products/category",
         body: jsonEncoded,
       );
       _response = _responseCheck(_response);
@@ -79,46 +67,7 @@ class NoteAPI {
     return _response;
   }
 
-  Future<http.Response> addFavorite(final Product product) async {
-    http.Response _response;
-    try {
-      final productJson = json.encode(product);
-      _response = await http.post(_baseURL + "product",
-          body: productJson);
-      _response = _responseCheck(_response);
-    } on SocketException {
-      throw FetchDataException("Not connected to internet");
-    }
-    return _response;
-  }
 
-  Future<http.Response> updateNote(
-    String token,
-    final note,
-  ) async {
-    http.Response _response;
-    try {
-      _response = await http.put(_baseURL + "notes/${note['id']}",
-          headers: {HttpHeaders.authorizationHeader: 'token $token'},
-          body: note);
-      _response = _responseCheck(_response);
-    } on SocketException {
-      throw FetchDataException("Not connected to internet");
-    }
-    return _response;
-  }
-
-  Future<http.Response> delete(String token, String noteId) async {
-    http.Response _response;
-    try {
-      _response = await http.delete(_baseURL + "notes/$noteId",
-          headers: {HttpHeaders.authorizationHeader: 'token $token'});
-      _response = _responseCheck(_response);
-    } on SocketException {
-      throw FetchDataException("Not connected to internet");
-    }
-    return _response;
-  }
 
   dynamic _responseCheck(http.Response response) {
     switch (response.statusCode) {

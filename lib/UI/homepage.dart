@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       _notifier.setState(RequestState.Busy);
-      _notifier.getProductCategory([1]);
+      _notifier.getProductCategory(2);
     });
   }
 

@@ -33,33 +33,35 @@ class ProductNotifier extends ChangeNotifier {
 
   void notify() => notifyListeners();
 
-  Future<dynamic> getProductCategory(List<int> category) async {
+  Future<dynamic> getProductCategory(int category) async {
+    debugPrint(category.toString());
     http.Response _response = await _authenticationService.getProductCategory(category);
 
     var parsed = json.decode(_response.body);
     Iterable iterable = parsed['items'];
-    sharedPreference.remove('uid');
+    debugPrint(iterable.toString());
+    // sharedPreference.remove('uid');
 
-    if(category[0] == 1){
+    if(category == 1){
       _one = iterable.map((e) => Product.fromJson(e)).toList();
       products += _one;
       setState(RequestState.Idle);
-      await getProductCategory([2]);
+      await getProductCategory(2);
 
     }
-    else if(category[0] == 2){
+    else if(category == 2){
       _two = iterable.map((e) => Product.fromJson(e)).toList();
       products += _two;
       setState(RequestState.Idle);
-      await getProductCategory([3]);
+      await getProductCategory(3);
 
 
     }
-    else if(category[0] == 3){
+    else if(category == 3){
       _three = iterable.map((e) => Product.fromJson(e)).toList();
       products += _three;
       setState(RequestState.Idle);
-      await getProductCategory([4]);
+      await getProductCategory(4);
 
 
     }else{
