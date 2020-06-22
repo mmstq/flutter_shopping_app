@@ -1,11 +1,12 @@
-import 'package:bookbuddy/UI/cart_page.dart';
-import 'package:bookbuddy/UI/favorite.dart';
-import 'package:bookbuddy/UI/homepage.dart';
-import 'package:bookbuddy/UI/user_profile.dart';
-import 'package:bookbuddy/Utils/data.dart';
-import 'package:bookbuddy/Utils/service.dart';
-import 'package:bookbuddy/ViewModel/login_notifier.dart';
-import 'package:bookbuddy/ViewModel/notes_fetch_notifier.dart';
+import 'package:testcart/UI/cart_page.dart';
+import 'package:testcart/UI/favorite.dart';
+import 'package:testcart/UI/homepage.dart';
+import 'package:testcart/UI/user_profile.dart';
+import 'package:testcart/Utils/data.dart';
+import 'package:testcart/Utils/service.dart';
+import 'package:testcart/ViewModel/favorite_viewmodel.dart';
+import 'package:testcart/ViewModel/login_notifier.dart';
+import 'package:testcart/ViewModel/notes_fetch_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -30,7 +31,13 @@ class MainScreen extends StatelessWidget {
                 actions: <Widget>[IconButton(icon: Icon(Icons.search),onPressed: (){},)],
                 pinned: true,
                 floating: true,
-                title: Text("TestCart"),
+                title: Row(
+                  children: <Widget>[
+                    Image.asset('icon/icon.png', height: 20,),
+                    SizedBox(width: 10,),
+                    Text("TestCart", style: TextStyle(fontWeight: FontWeight.w700),),
+                  ],
+                ),
                 bottom: TabBar(
                   indicatorWeight: 3,
                   labelPadding: EdgeInsets.only(bottom: 10, top: 10),
@@ -47,8 +54,8 @@ class MainScreen extends StatelessWidget {
           },
           body: MultiProvider(
             providers: [
-              Provider<LoginNotifier>(builder: (_)=>service<LoginNotifier>(),),
-              Provider<ProductNotifier>(builder: (_)=>service<ProductNotifier>(),),
+              ChangeNotifierProvider<ProductNotifier>(create: (_)=>service<ProductNotifier>(),),
+              ChangeNotifierProvider<FavoriteNotifier>(create: (_)=>service<FavoriteNotifier>(),),
             ],
             child: TabBarView(
               children: <Widget>[

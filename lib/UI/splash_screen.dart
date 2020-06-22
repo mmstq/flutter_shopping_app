@@ -1,7 +1,7 @@
-import 'package:bookbuddy/UI/loginUI.dart';
-import 'package:bookbuddy/UI/main_screen.dart';
-import 'package:bookbuddy/Utils/data.dart';
-import 'package:bookbuddy/main.dart';
+import 'package:testcart/UI/loginUI.dart';
+import 'package:testcart/UI/main_screen.dart';
+import 'package:testcart/Utils/data.dart';
+import 'package:testcart/main.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

@@ -1,18 +1,21 @@
+import 'dart:convert';
 import 'dart:io';
-import 'package:bookbuddy/Utils/data.dart';
-import 'package:bookbuddy/noted/login.dart';
+
+import 'package:testcart/Model/product_model.dart';
+import 'package:testcart/Network/error_handling.dart';
+import 'package:testcart/Utils/data.dart';
+import 'package:testcart/noted/login.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:bookbuddy/Network/error_handling.dart';
 
-class NoteAPI
-{
+class NoteAPI {
   final _baseURL = 'https://zuko.eu-gb.mybluemix.net/';
 
   Future<dynamic> login(Map user) async {
     http.Response _response;
     try {
-      _response = await http.post(_baseURL + "user/login", body: user);
+      _response = await http
+          .post('https://qikert.herokuapp.com/' + "user/login", body: user);
       _response = _responseCheck(_response);
     } on SocketException {
       throw FetchDataException("Not connected to internet");
@@ -20,10 +23,27 @@ class NoteAPI
     return _response;
   }
 
-  Future<dynamic> signUp(Map user) async {
+  Future<dynamic> getProductWithId(List<int> products) async {
     http.Response _response;
     try {
-      _response = await http.post(_baseURL + "user/signup", body: user);
+      final jsonEncoded =
+      json.encode({"Query": 'product_id', "Value": products});
+      _response = await http.post(_baseURL + "product",
+          body: jsonEncoded);
+      _response = _responseCheck(_response);
+    } on SocketException {
+      throw FetchDataException("Not connected to internet");
+    }
+    return _response;
+  }
+
+  Future<dynamic> updateFavoriteList(List<int> products) async {
+    http.Response _response;
+    try {
+      final jsonEncoded =
+          json.encode({"Query": 'product_id', "Value": products});
+      _response = await http.post(_baseURL + "product",
+          headers: {"Accept": "application/json"}, body: jsonEncoded);
       _response = _responseCheck(_response);
     } on SocketException {
       throw FetchDataException("Not connected to internet");
@@ -42,10 +62,16 @@ class NoteAPI
     }
     return _response;
   }
-  Future<http.Response> getProductCategory(int category) async {
+
+  Future<http.Response> getProductCategory(List<int> category) async {
     http.Response _response;
     try {
-      _response = await http.get(_baseURL + "product?category=$category");
+      final jsonEncoded = json.encode({"Query": 'category', "Value": category});
+      debugPrint(jsonEncoded);
+      _response = await http.post(
+        _baseURL + "product",
+        body: jsonEncoded,
+      );
       _response = _responseCheck(_response);
     } on SocketException {
       throw FetchDataException("Not connected to internet");
@@ -53,22 +79,28 @@ class NoteAPI
     return _response;
   }
 
-  Future<http.Response> saveNote(String token, final note) async {
+  Future<http.Response> addFavorite(final Product product) async {
     http.Response _response;
     try {
-      _response = await http.post(_baseURL + "notes",
-          headers: {HttpHeaders.authorizationHeader: 'token $token'}, body: note);
+      final productJson = json.encode(product);
+      _response = await http.post(_baseURL + "product",
+          body: productJson);
       _response = _responseCheck(_response);
     } on SocketException {
       throw FetchDataException("Not connected to internet");
     }
     return _response;
   }
-  Future<http.Response> updateNote(String token, final note,) async {
+
+  Future<http.Response> updateNote(
+    String token,
+    final note,
+  ) async {
     http.Response _response;
     try {
       _response = await http.put(_baseURL + "notes/${note['id']}",
-          headers: {HttpHeaders.authorizationHeader: 'token $token'}, body: note);
+          headers: {HttpHeaders.authorizationHeader: 'token $token'},
+          body: note);
       _response = _responseCheck(_response);
     } on SocketException {
       throw FetchDataException("Not connected to internet");
@@ -93,7 +125,7 @@ class NoteAPI
       case 200:
       case 201:
       case 202:
-        debugPrint('response ${response.body}');
+//        debugPrint('response ${response.body}');
         return response;
 
       case 400:

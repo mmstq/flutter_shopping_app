@@ -1,5 +1,11 @@
-import 'package:bookbuddy/Utils/data.dart';
-import 'package:bookbuddy/ViewModel/notes_fetch_notifier.dart';
+import 'dart:convert';
+
+import 'package:testcart/Model/product_model.dart';
+import 'package:testcart/Response/login_response.dart';
+import 'package:testcart/UI/detailscreen.dart';
+import 'package:testcart/UI/view_all_product.dart';
+import 'package:testcart/Utils/data.dart';
+import 'package:testcart/ViewModel/notes_fetch_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -9,8 +15,9 @@ import 'package:provider/provider.dart';
 class Category {
   var title = "";
   var icon = "";
+  int category;
 
-  Category(this.title, this.icon);
+  Category(this.title, this.icon, this.category);
 }
 
 class HomePage extends StatefulWidget {
@@ -25,9 +32,12 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-      _notifier.getProductCategory(1);
+      _notifier.setState(RequestState.Busy);
+      _notifier.getProductCategory([1]);
     });
   }
+
+
 
   final textTheme = TextStyle(
       color: Colors.blueGrey.shade900, fontFamily: fFamily, fontSize: 12);
@@ -35,11 +45,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final categories = [
-      Category('Mobile', 'assets/smartphone.png'),
-      Category('Grocery', 'assets/basket.png'),
-      Category('Clothes', 'assets/clothes.png'),
-      Category('Books', 'assets/book.png'),
-      Category('Health Care', 'assets/mask.png'),
+      Category('Mobile', 'assets/smartphone.png',2),
+      Category('Clothes', 'assets/clothes.png',4),
+      Category('Books', 'assets/book.png',3),
+      Category('Shoes', 'assets/shoe.png',1),
+      Category('Health Care', 'assets/mask.png',5),
     ];
     final theme = Theme.of(context);
     final screen = MediaQuery.of(context).size;
@@ -80,31 +90,51 @@ class _HomePageState extends State<HomePage> {
                             scrollDirection: Axis.horizontal,
                             children: categories
                                 .map((e) => Padding(
-                              padding:
-                              const EdgeInsets.fromLTRB(12, 0, 12, 0),
-                              child: Column(
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  CircleAvatar(
-                                    backgroundColor: theme.accentColor
-                                        .withOpacity(0.2),
-                                    radius: 32,
-                                    child: Image.asset(
-                                      e.icon,
-                                      color: theme.accentColor,
-                                      height: 25,
-                                      width: 25,
-                                    ),
-                                  ),
-                                  Text(
-                                    e.title,
-                                    style:
-                                    textTheme.copyWith(fontSize: 12),
-                                  )
-                                ],
-                              ),
-                            ))
+                                      padding: const EdgeInsets.fromLTRB(
+                                          12, 0, 12, 0),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: <Widget>[
+                                          GestureDetector(
+                                            onTap: (){
+                                              var list;
+                                              switch(e.category){
+                                                case 1:
+                                                  list = model.one;
+                                                  break;
+                                                case 2:
+                                                  list = model.two;
+                                                  break;
+                                                case 3:
+                                                  list = model.three;
+                                                  break;
+                                                default:
+                                                  list = model.four;
+                                                  break;
+                                              }
+                                              showAll(list, e.title, false);
+                                            },
+                                            child: CircleAvatar(
+                                              backgroundColor: theme.accentColor
+                                                  .withOpacity(0.2),
+                                              radius: 32,
+                                              child: Image.asset(
+                                                e.icon,
+                                                color: theme.accentColor,
+                                                height: 25,
+                                                width: 25,
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                            e.title,
+                                            style: textTheme.copyWith(
+                                                fontSize: 12),
+                                          )
+                                        ],
+                                      ),
+                                    ))
                                 .toList(),
                           ),
                         ),
@@ -129,10 +159,11 @@ class _HomePageState extends State<HomePage> {
                       flex: 20,
                     ),
                     GestureDetector(
+                        onTap: ()=>showAll(model.one, 'Shoes', false),
                         child: Text(
-                          'view all',
-                          style: textTheme,
-                        )),
+                      'view all',
+                      style: textTheme,
+                    )),
                     Padding(
                       padding: EdgeInsets.only(left: 5, right: 10),
                       child: Icon(
@@ -143,119 +174,129 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 10, top: 10),
-                  height: screen.height * 0.2,
-                  child: (model.products.isNotEmpty)
-                      ? ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: model.products.length,
-                    itemBuilder: (context, index){
-                      final e = model.products[index];
-                      return Card(
-                        shadowColor: Colors.black12,
-                        elevation: 10,
-                        child: Container(
-                          width: screen.height * 0.14,
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: <Widget>[
-                              Positioned(
-                                  right: 5,
-                                  top: 5,
-                                  child: getLikeButton(
-                                      theme.accentColor)),
-                              /*Positioned(
-                            top: 5,
-                            left: 5,
-                            child: Text(
-                              "Nike",
-                              style: textTheme.copyWith(fontSize: 12),
-                            ),
-                          ),*/
-                              Positioned(
-                                top: 15,
-                                right: 0,
-                                left: 0,
-                                child: Image.network(
-                                  e.images,
-                                  height: screen.height*0.09,
-                                  width: 40,
-                                ),
-                              ),
-                              Positioned(
-                                bottom: 40,
+                    margin: EdgeInsets.only(left: 10, top: 10),
+                    height: screen.height * 0.24,
+                    child: (model.one.isNotEmpty)
+                        ? ListView.builder(
+                            padding: EdgeInsets.only(bottom: 15),
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 4,
+                            itemBuilder: (context, index) {
+                              final e = model.one[index];
+                              return Card(
+                                shadowColor: Colors.black26,
+                                elevation: 10,
                                 child: Container(
-                                  width: screen.height*0.13,
-                                  child: Text(e.title + '\n',
-                                      textAlign: TextAlign.center,
-                                      overflow: TextOverflow.clip,
-                                      maxLines: 2,
-                                      style: textTheme.copyWith(
-                                          fontSize: 12,
-                                          fontWeight:
-                                          FontWeight.w400)),
-                                ),
-                              ),
-                              Positioned(
-                                  bottom: 5,
-                                  child: RichText(
-                                    textAlign: TextAlign.center,
-                                    overflow: TextOverflow.ellipsis,
-                                    text: TextSpan(children: [
-                                      TextSpan(
-                                        text: '₹${e.mrp}',
-                                        style: textTheme.copyWith(
-                                            fontSize: 14,
-                                            decoration: TextDecoration
-                                                .lineThrough,
-                                            height: 1.2),
-                                      ),
-                                      TextSpan(
-                                        text: '  ₹${e.afterPrice}\n',
-                                        style: textTheme.copyWith(
-                                            fontSize: 14,
-                                            fontWeight:
-                                            FontWeight.w500,
-                                            height: 1.2),
-                                      ),
-                                      TextSpan(
-                                        text: e.discount,
-                                        style: textTheme.copyWith(
-                                            fontSize: 14,
-                                            fontWeight:
-                                            FontWeight.w500,
+                                  width: screen.height * 0.15,
+                                  child: Stack(
+                                    alignment: Alignment.center,
+                                    children: <Widget>[
+                                      Positioned(
+                                        top: 0,
+                                        left: 0,
+                                        child: Container(
+                                          padding: EdgeInsets.all(3),
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(4),
+                                                bottomRight:
+                                                    Radius.circular(4)),
                                             color: Colors
-                                                .lightGreenAccent
-                                                .shade700,
-                                            height: 1.2),
-                                      ),
-                                      /*TextSpan(
-                                        text: ' Off',
-                                        style: textTheme.copyWith(fontSize: 14, color: Colors.lightGreenAccent.shade700,height: 1.2
+                                                .lightGreenAccent.shade700,
+                                          ),
+                                          child: Text(e.discount,
+                                              style: textTheme.copyWith(
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Colors.white,
+                                                  height: 1.2)),
                                         ),
-                                      ),*/
-                                    ]),
-                                  ))
-                            ],
-                          ),
-                        ),
-                      );
+                                      ),
+                                      Positioned(
+                                          right: 3,
+                                          top: 3,
+                                          child:
+                                              getLikeButton(theme.accentColor, e)),
+                                      Positioned(
+                                        top: 25,
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 2, bottom: 5),
+                                              child: GestureDetector(
+                                                onTap: ()=>Navigator.of(context).push(Data.routeSwitcher(context, DetailedScreen(e))),
+                                                child: Hero(
+                                                  tag: e.productId.toString(),
+                                                  child: Image.network(
+                                                    e.images,
+                                                    fit: BoxFit.fitHeight,
+                                                    height: screen.height * 0.1,
+                                                    width: screen.height * 0.14,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                              width: screen.height * 0.14,
+                                              child: Text(e.title + '\n',
+                                                  textAlign: TextAlign.center,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  maxLines: 2,
+                                                  style: textTheme.copyWith(
+                                                      fontSize: 12,
+                                                      fontWeight: FontWeight.w400)),
+                                            ),
+                                            RichText(
+                                              textAlign: TextAlign.center,
+                                              overflow: TextOverflow.ellipsis,
+                                              text: TextSpan(children: [
+                                                TextSpan(
+                                                  text: '₹${e.mrp}',
+                                                  style: textTheme.copyWith(
+                                                      fontSize: 13,
+                                                      height: 1.5,
+                                                      decoration: TextDecoration
+                                                          .lineThrough,),
+                                                ),
+                                                TextSpan(
+                                                  text: '  ₹${e.afterPrice}\n',
+                                                  style: textTheme.copyWith(
+                                                      fontSize: 14,
+                                                      fontWeight: FontWeight.w700),
+                                                ),
 
-                    },
-                  )
-                      : CircularProgressIndicator(
-                    strokeWidth: 2,
-                  ),
-                ),
+                                              ]),
+
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          )
+                        : Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: CircularProgressIndicator(
+                                strokeWidth: 1.5,
+                              ),
+                            ),
+                          )),
+
                 SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 Row(
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0),
                       child: Text(
-                        "Deals on shoes",
+                        "Deals on mobiles",
                         style: textTheme.copyWith(
                             fontSize: 18, fontWeight: FontWeight.w500),
                       ),
@@ -264,6 +305,7 @@ class _HomePageState extends State<HomePage> {
                       flex: 20,
                     ),
                     GestureDetector(
+                        onTap: ()=>showAll(model.two, 'Mobiles', false),
                         child: Text(
                           'view all',
                           style: textTheme,
@@ -278,119 +320,123 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 10, top: 10),
-                  height: screen.height * 0.2,
-                  child: (model.products.isNotEmpty)
-                      ? ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: model.products.length,
-                    itemBuilder: (context, index){
-                      final e = model.products[index];
-                      return Card(
-                        shadowColor: Colors.black12,
-                        elevation: 10,
-                        child: Container(
-                          width: screen.height * 0.14,
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: <Widget>[
-                              Positioned(
-                                  right: 5,
-                                  top: 5,
-                                  child: getLikeButton(
-                                      theme.accentColor)),
-                              /*Positioned(
-                            top: 5,
-                            left: 5,
-                            child: Text(
-                              "Nike",
-                              style: textTheme.copyWith(fontSize: 12),
-                            ),
-                          ),*/
-                              Positioned(
-                                top: 15,
-                                right: 0,
-                                left: 0,
-                                child: Image.network(
-                                  e.images,
-                                  height: screen.height*0.09,
-                                  width: 40,
+                    margin: EdgeInsets.only(left: 10, top: 10),
+                    height: screen.height * 0.24,
+                    child: (model.two.isNotEmpty)
+                        ? ListView.builder(
+                      padding: EdgeInsets.only(bottom: 15),
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 4,
+                      itemBuilder: (context, index) {
+                        final e = model.two[index];
+                        return Card(
+                          shadowColor: Colors.black26,
+                          elevation: 10,
+                          child: Container(
+                            width: screen.height * 0.15,
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: <Widget>[
+                                Positioned(
+                                  top: 0,
+                                  left: 0,
+                                  child: Container(
+                                    padding: EdgeInsets.all(3),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(4),
+                                          bottomRight:
+                                          Radius.circular(4)),
+                                      color: Colors
+                                          .lightGreenAccent.shade700,
+                                    ),
+                                    child: Text(e.discount,
+                                        style: textTheme.copyWith(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w400,
+                                            color: Colors.white,)),
+                                  ),
                                 ),
-                              ),
-                              Positioned(
-                                bottom: 40,
-                                child: Container(
-                                  width: screen.height*0.13,
-                                  child: Text(e.title + '\n',
-                                      textAlign: TextAlign.center,
-                                      overflow: TextOverflow.clip,
-                                      maxLines: 2,
-                                      style: textTheme.copyWith(
-                                          fontSize: 12,
-                                          fontWeight:
-                                          FontWeight.w400)),
-                                ),
-                              ),
-                              Positioned(
-                                  bottom: 5,
-                                  child: RichText(
-                                    textAlign: TextAlign.center,
-                                    overflow: TextOverflow.ellipsis,
-                                    text: TextSpan(children: [
-                                      TextSpan(
-                                        text: '₹${e.mrp}',
-                                        style: textTheme.copyWith(
-                                            fontSize: 14,
-                                            decoration: TextDecoration
-                                                .lineThrough,
-                                            height: 1.2),
-                                      ),
-                                      TextSpan(
-                                        text: '  ₹${e.afterPrice}\n',
-                                        style: textTheme.copyWith(
-                                            fontSize: 14,
-                                            fontWeight:
-                                            FontWeight.w500,
-                                            height: 1.2),
-                                      ),
-                                      TextSpan(
-                                        text: e.discount,
-                                        style: textTheme.copyWith(
-                                            fontSize: 14,
-                                            fontWeight:
-                                            FontWeight.w500,
-                                            color: Colors
-                                                .lightGreenAccent
-                                                .shade700,
-                                            height: 1.2),
-                                      ),
-                                      /*TextSpan(
-                                        text: ' Off',
-                                        style: textTheme.copyWith(fontSize: 14, color: Colors.lightGreenAccent.shade700,height: 1.2
+                                Positioned(
+                                    right: 3,
+                                    top: 3,
+                                    child:
+                                    getLikeButton(theme.accentColor, e)),
+                                Positioned(
+                                  top: 25,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 2, bottom: 5),
+                                        child: Image.network(
+                                          e.images,
+                                          fit: BoxFit.fitHeight,
+                                          height: screen.height * 0.095,
+                                          width: screen.height * 0.14,
                                         ),
-                                      ),*/
-                                    ]),
-                                  ))
-                            ],
-                          ),
-                        ),
-                      );
+                                      ),
+                                      Container(
+                                        width: screen.height * 0.14,
+                                        child: Text(e.title + '\n',
+                                            textAlign: TextAlign.center,
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 2,
+                                            style: textTheme.copyWith(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w400)),
+                                      ),
+                                      SizedBox(height: 2,),
+                                      RichText(
+                                        textAlign: TextAlign.center,
+                                        overflow: TextOverflow.ellipsis,
+                                        text: TextSpan(children: [
+                                          TextSpan(
+                                            text: '₹${e.mrp}',
+                                            style: textTheme.copyWith(
+                                              fontSize: 13,
+                                              height: 1.2,
+                                              decoration: TextDecoration
+                                                  .lineThrough,),
+                                          ),
+                                          TextSpan(
+                                            text: '  ₹${e.afterPrice}\n',
+                                            style: textTheme.copyWith(
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w700),
+                                          ),
 
-                    },
-                  )
-                      : CircularProgressIndicator(
-                    strokeWidth: 2,
-                  ),
-                ),
+                                        ]),
+
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    )
+                        : Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: CircularProgressIndicator(
+                          strokeWidth: 1.5,
+                        ),
+                      ),
+                    )),
+
                 SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 Row(
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0),
                       child: Text(
-                        "Deals on shoes",
+                        "Deals on books",
                         style: textTheme.copyWith(
                             fontSize: 18, fontWeight: FontWeight.w500),
                       ),
@@ -399,6 +445,7 @@ class _HomePageState extends State<HomePage> {
                       flex: 20,
                     ),
                     GestureDetector(
+                        onTap: ()=>showAll(model.three, 'Books', false),
                         child: Text(
                           'view all',
                           style: textTheme,
@@ -413,119 +460,124 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 10, top: 10),
-                  height: screen.height * 0.2,
-                  child: (model.products.isNotEmpty)
-                      ? ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: model.products.length,
-                    itemBuilder: (context, index){
-                      final e = model.products[index];
-                      return Card(
-                        shadowColor: Colors.black12,
-                        elevation: 10,
-                        child: Container(
-                          width: screen.height * 0.14,
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: <Widget>[
-                              Positioned(
-                                  right: 5,
-                                  top: 5,
-                                  child: getLikeButton(
-                                      theme.accentColor)),
-                              /*Positioned(
-                            top: 5,
-                            left: 5,
-                            child: Text(
-                              "Nike",
-                              style: textTheme.copyWith(fontSize: 12),
-                            ),
-                          ),*/
-                              Positioned(
-                                top: 15,
-                                right: 0,
-                                left: 0,
-                                child: Image.network(
-                                  e.images,
-                                  height: screen.height*0.09,
-                                  width: 40,
+                    margin: EdgeInsets.only(left: 10, top: 10),
+                    height: screen.height * 0.24,
+                    child: (model.three.isNotEmpty)
+                        ? ListView.builder(
+                      padding: EdgeInsets.only(bottom: 15),
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 4,
+                      itemBuilder: (context, index) {
+                        final e = model.three[index];
+                        return Card(
+                          shadowColor: Colors.black26,
+                          elevation: 10,
+                          child: Container(
+                            width: screen.height * 0.15,
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: <Widget>[
+                                Positioned(
+                                  top: 0,
+                                  left: 0,
+                                  child: Container(
+                                    padding: EdgeInsets.all(3),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(4),
+                                          bottomRight:
+                                          Radius.circular(4)),
+                                      color: Colors
+                                          .lightGreenAccent.shade700,
+                                    ),
+                                    child: Text(e.discount,
+                                        style: textTheme.copyWith(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w400,
+                                            color: Colors.white,
+                                            height: 1.2)),
+                                  ),
                                 ),
-                              ),
-                              Positioned(
-                                bottom: 40,
-                                child: Container(
-                                  width: screen.height*0.13,
-                                  child: Text(e.title + '\n',
-                                      textAlign: TextAlign.center,
-                                      overflow: TextOverflow.clip,
-                                      maxLines: 2,
-                                      style: textTheme.copyWith(
-                                          fontSize: 12,
-                                          fontWeight:
-                                          FontWeight.w400)),
-                                ),
-                              ),
-                              Positioned(
-                                  bottom: 5,
-                                  child: RichText(
-                                    textAlign: TextAlign.center,
-                                    overflow: TextOverflow.ellipsis,
-                                    text: TextSpan(children: [
-                                      TextSpan(
-                                        text: '₹${e.mrp}',
-                                        style: textTheme.copyWith(
-                                            fontSize: 14,
-                                            decoration: TextDecoration
-                                                .lineThrough,
-                                            height: 1.2),
-                                      ),
-                                      TextSpan(
-                                        text: '  ₹${e.afterPrice}\n',
-                                        style: textTheme.copyWith(
-                                            fontSize: 14,
-                                            fontWeight:
-                                            FontWeight.w500,
-                                            height: 1.2),
-                                      ),
-                                      TextSpan(
-                                        text: e.discount,
-                                        style: textTheme.copyWith(
-                                            fontSize: 14,
-                                            fontWeight:
-                                            FontWeight.w500,
-                                            color: Colors
-                                                .lightGreenAccent
-                                                .shade700,
-                                            height: 1.2),
-                                      ),
-                                      /*TextSpan(
-                                        text: ' Off',
-                                        style: textTheme.copyWith(fontSize: 14, color: Colors.lightGreenAccent.shade700,height: 1.2
+                                Positioned(
+                                    right: 3,
+                                    top: 3,
+                                    child:
+                                    getLikeButton(theme.accentColor, e)),
+                                Positioned(
+                                  top: 25,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 2, bottom: 5),
+                                        child: Image.network(
+                                          e.images,
+                                          fit: BoxFit.fitHeight,
+                                          height: screen.height * 0.1,
+                                          width: screen.height * 0.14,
                                         ),
-                                      ),*/
-                                    ]),
-                                  ))
-                            ],
-                          ),
-                        ),
-                      );
+                                      ),
+                                      Container(
+                                        width: screen.height * 0.14,
+                                        child: Text(e.title + '\n',
+                                            textAlign: TextAlign.center,
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 2,
+                                            style: textTheme.copyWith(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w400)),
+                                      ),
+                                      RichText(
+                                        textAlign: TextAlign.center,
+                                        overflow: TextOverflow.ellipsis,
+                                        text: TextSpan(children: [
+                                          TextSpan(
+                                            text: '₹${e.mrp}',
+                                            style: textTheme.copyWith(
+                                              fontSize: 13,
+                                              height: 1.5,
 
-                    },
-                  )
-                      : CircularProgressIndicator(
-                    strokeWidth: 2,
-                  ),
-                ),
+                                              decoration: TextDecoration
+                                                  .lineThrough,),
+                                          ),
+                                          TextSpan(
+                                            text: '  ₹${e.afterPrice}\n',
+                                            style: textTheme.copyWith(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+
+                                        ]),
+
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    )
+                        : Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: CircularProgressIndicator(
+                          strokeWidth: 1.5,
+                        ),
+                      ),
+                    )),
+
                 SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 Row(
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0),
                       child: Text(
-                        "Deals on shoes",
+                        "Deals on clothes",
                         style: textTheme.copyWith(
                             fontSize: 18, fontWeight: FontWeight.w500),
                       ),
@@ -534,6 +586,7 @@ class _HomePageState extends State<HomePage> {
                       flex: 20,
                     ),
                     GestureDetector(
+                        onTap: ()=>showAll(model.four, 'Clothes', false),
                         child: Text(
                           'view all',
                           style: textTheme,
@@ -548,110 +601,114 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 10, top: 10),
-                  height: screen.height * 0.2,
-                  child: (model.products.isNotEmpty)
-                      ? ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: model.products.length,
-                    itemBuilder: (context, index){
-                      final e = model.products[index];
-                      return Card(
-                        shadowColor: Colors.black12,
-                        elevation: 10,
-                        child: Container(
-                          width: screen.height * 0.14,
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: <Widget>[
-                              Positioned(
-                                  right: 5,
-                                  top: 5,
-                                  child: getLikeButton(
-                                      theme.accentColor)),
-                              /*Positioned(
-                            top: 5,
-                            left: 5,
-                            child: Text(
-                              "Nike",
-                              style: textTheme.copyWith(fontSize: 12),
-                            ),
-                          ),*/
-                              Positioned(
-                                top: 15,
-                                right: 0,
-                                left: 0,
-                                child: Image.network(
-                                  e.images,
-                                  height: screen.height*0.09,
-                                  width: 40,
+                    margin: EdgeInsets.only(left: 10, top: 10),
+                    height: screen.height * 0.24,
+                    child: (model.four.isNotEmpty)
+                        ? ListView.builder(
+                      padding: EdgeInsets.only(bottom: 15),
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 4,
+                      itemBuilder: (context, index) {
+                        final e = model.four[index];
+                        return Card(
+                          shadowColor: Colors.black26,
+                          elevation: 10,
+                          child: Container(
+                            width: screen.height * 0.15,
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: <Widget>[
+                                Positioned(
+                                  top: 0,
+                                  left: 0,
+                                  child: Container(
+                                    padding: EdgeInsets.all(3),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(4),
+                                          bottomRight:
+                                          Radius.circular(4)),
+                                      color: Colors
+                                          .lightGreenAccent.shade700,
+                                    ),
+                                    child: Text(e.discount,
+                                        style: textTheme.copyWith(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w400,
+                                            color: Colors.white,
+                                            height: 1.2)),
+                                  ),
                                 ),
-                              ),
-                              Positioned(
-                                bottom: 40,
-                                child: Container(
-                                  width: screen.height*0.13,
-                                  child: Text(e.title + '\n',
-                                      textAlign: TextAlign.center,
-                                      overflow: TextOverflow.clip,
-                                      maxLines: 2,
-                                      style: textTheme.copyWith(
-                                          fontSize: 12,
-                                          fontWeight:
-                                          FontWeight.w400)),
-                                ),
-                              ),
-                              Positioned(
-                                  bottom: 5,
-                                  child: RichText(
-                                    textAlign: TextAlign.center,
-                                    overflow: TextOverflow.ellipsis,
-                                    text: TextSpan(children: [
-                                      TextSpan(
-                                        text: '₹${e.mrp}',
-                                        style: textTheme.copyWith(
-                                            fontSize: 14,
-                                            decoration: TextDecoration
-                                                .lineThrough,
-                                            height: 1.2),
-                                      ),
-                                      TextSpan(
-                                        text: '  ₹${e.afterPrice}\n',
-                                        style: textTheme.copyWith(
-                                            fontSize: 14,
-                                            fontWeight:
-                                            FontWeight.w500,
-                                            height: 1.2),
-                                      ),
-                                      TextSpan(
-                                        text: e.discount,
-                                        style: textTheme.copyWith(
-                                            fontSize: 14,
-                                            fontWeight:
-                                            FontWeight.w500,
-                                            color: Colors
-                                                .lightGreenAccent
-                                                .shade700,
-                                            height: 1.2),
-                                      ),
-                                      /*TextSpan(
-                                        text: ' Off',
-                                        style: textTheme.copyWith(fontSize: 14, color: Colors.lightGreenAccent.shade700,height: 1.2
+                                Positioned(
+                                    right: 3,
+                                    top: 3,
+                                    child:
+                                    getLikeButton(theme.accentColor, e)),
+                                Positioned(
+                                  top: 25,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 2, bottom: 5),
+                                        child: Image.network(
+                                          e.images,
+                                          fit: BoxFit.fitHeight,
+                                          height: screen.height * 0.1,
+                                          width: screen.height * 0.14,
                                         ),
-                                      ),*/
-                                    ]),
-                                  ))
-                            ],
-                          ),
-                        ),
-                      );
+                                      ),
+                                      Container(
+                                        width: screen.height * 0.14,
+                                        child: Text(e.title + '\n',
+                                            textAlign: TextAlign.center,
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 2,
+                                            style: textTheme.copyWith(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w400)),
+                                      ),
+                                      SizedBox(height: 2,),
+                                      RichText(
+                                        textAlign: TextAlign.center,
+                                        overflow: TextOverflow.ellipsis,
+                                        text: TextSpan(children: [
+                                          TextSpan(
+                                            text: '₹${e.mrp}',
+                                            style: textTheme.copyWith(
+                                              fontSize: 13,
+                                              height: 1.5,
+                                              decoration: TextDecoration
+                                                  .lineThrough,),
+                                          ),
+                                          TextSpan(
+                                            text: '  ₹${e.afterPrice}\n',
+                                            style: textTheme.copyWith(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w700),
+                                          ),
 
-                    },
-                  )
-                      : CircularProgressIndicator(
-                    strokeWidth: 2,
-                  ),
-                ),
+                                        ]),
+
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    )
+                        : Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: CircularProgressIndicator(
+                          strokeWidth: 1.5,
+                        ),
+                      ),
+                    )),
               ],
             );
           },
@@ -660,7 +717,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget getLikeButton(Color color) {
+  Widget getLikeButton(Color color, Product product) {
     return LikeButton(
       size: 20,
       circleColor: CircleColor(start: color, end: Colors.deepOrange),
@@ -668,7 +725,19 @@ class _HomePageState extends State<HomePage> {
         dotPrimaryColor: color,
         dotSecondaryColor: Colors.deepOrange,
       ),
-      onTap: onTapLikeButton,
+      onTap: (bool isLiked) async {
+
+        Map userObject = json.decode(sharedPreference.getString('user')??"{}");
+        var user = User.fromJson(userObject);
+        if(isLiked){
+          user.favorite.add(product.productId);
+        }else{
+          user.favorite.remove(product.productId);
+        }
+        sharedPreference.setString('user', json.encode(user));
+
+        return !isLiked;
+      },
       likeBuilder: (bool isLiked) {
         return Icon(
           isLiked ? Icons.favorite : Icons.favorite_border,
@@ -679,7 +748,9 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Future<bool> onTapLikeButton(bool isLiked) async {
-    return !isLiked;
+
+  void showAll(List<Product> products, String title, bool isLiked){
+    Navigator.of(context).push(Data.routeSwitcher(context, ViewAll(products, title, isLiked)));
+
   }
 }

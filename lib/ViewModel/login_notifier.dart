@@ -1,11 +1,12 @@
-import 'package:bookbuddy/Network/middleware.dart';
-import 'package:bookbuddy/Utils/data.dart';
-import 'package:bookbuddy/Utils/service.dart';
+import 'dart:convert';
+import 'package:testcart/Network/middleware.dart';
+import 'package:testcart/Response/login_response.dart';
+import 'package:testcart/Utils/data.dart';
+import 'package:testcart/Utils/service.dart';
 import 'package:flutter/material.dart';
 
-class LoginNotifier extends ChangeNotifier{
-
-  final MiddleWare _middleware  = service<MiddleWare>();
+class LoginNotifier extends ChangeNotifier {
+  final MiddleWare _middleware = service<MiddleWare>();
 
   RequestState _state = RequestState.Idle;
   bool _isSignedIn = false;
@@ -14,30 +15,40 @@ class LoginNotifier extends ChangeNotifier{
 
   bool get isSignedIn => _isSignedIn;
 
-  void setState(RequestState state){
+  void setState(RequestState state) {
     _state = state;
     notifyListeners();
   }
-  void setSigned(bool value){
+
+  void setSigned(bool value, String uid) {
     _isSignedIn = value;
-    if(_isSignedIn != value) notifyListeners();
+    sharedPreference.setString('uid', uid);
+    if (_isSignedIn != value) notifyListeners();
   }
 
-  Future<dynamic> login(Map user)async{
+  Future<dynamic> login(Map user) async {
     setState(RequestState.Busy);
-    try{
-      final success = await _middleware.login(user);
+    try {
+      final response = await _middleware.login(user);
+      debugPrint(response.body);
+      final LoginResponse loginResponse =
+          LoginResponse.fromJson(json.decode(response.body));
+      Map us = loginResponse.user.toJson();
+
+      sharedPreference.setString('token', loginResponse.token);
+      sharedPreference.setString('user', json.encode(us));
+
+      final bool success = response.statusCode == 202;
       debugPrint('is login successful $success');
-//      if(success) {
-//        setState(RequestState.Done);
-//        setSigned(true);
-//      }else{
-//        setState(RequestState.Idle);
-//      }
-    }catch(e){
+      if (success) {
+        setState(RequestState.Done);
+        setSigned(true, loginResponse.user.id);
+      } else {
+        setState(RequestState.Idle);
+      }
+    } catch (e) {
       debugPrint('caught exception $e');
       setState(RequestState.Idle);
     }
-
   }
 }

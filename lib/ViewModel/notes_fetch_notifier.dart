@@ -1,23 +1,29 @@
-
 import 'dart:convert';
 
-import 'package:bookbuddy/Model/product_model.dart';
-import 'package:bookbuddy/Network/middleware.dart';
-import 'package:bookbuddy/Utils/data.dart';
-import 'package:bookbuddy/Utils/service.dart';
+import 'package:testcart/Model/product_model.dart';
+import 'package:testcart/Network/middleware.dart';
+import 'package:testcart/Utils/data.dart';
+import 'package:testcart/Utils/service.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
-//
+
+
 class ProductNotifier extends ChangeNotifier {
   final MiddleWare _authenticationService = service<MiddleWare>();
   RequestState _state = RequestState.Busy;
 
   RequestState get state => _state;
 
-  List<Product> _products = [];
 
-  List<Product> get products => _products;
+  List<Product> _one = [];
+  List<Product> _two = [];
+  List<Product> _three = [];
+  List<Product> _four = [];
+
+  List<Product> get one => _one;
+  List<Product> get two => _two;
+  List<Product> get three => _three;
+  List<Product> get four => _four;
 
   void setState(RequestState state) {
     _state = state;
@@ -26,25 +32,37 @@ class ProductNotifier extends ChangeNotifier {
 
   void notify() => notifyListeners();
 
-  Future<dynamic> getProductCategory(int category) async {
-    setState(RequestState.Busy);
-    /*final sp = await SharedPreferences.getInstance();
-    final token = sp.getString('token');
-    debugPrint('token is $token');*/
+  Future<dynamic> getProductCategory(List<int> category) async {
     http.Response _response = await _authenticationService.getProductCategory(category);
 
-    if (_response != null) {
-      var parsed = json.decode(_response.body);
-      Iterable iterable = parsed['items'];
-//      Data.showResponseMessage(parsed['message']);
-      _products = iterable.map((e) => Product.fromJson(e)).toList();
-      _products.forEach((element) {debugPrint(element.title);});
+    var parsed = json.decode(_response.body);
+    Iterable iterable = parsed['items'];
+    sharedPreference.remove('uid');
+
+    if(category[0] == 1){
+      _one = iterable.map((e) => Product.fromJson(e)).toList();
       setState(RequestState.Idle);
-      debugPrint(state.toString());
-      notify();
+      await getProductCategory([2]);
 
     }
-    setState(RequestState.Idle);
+    else if(category[0] == 2){
+      _two = iterable.map((e) => Product.fromJson(e)).toList();
+      setState(RequestState.Idle);
+      await getProductCategory([3]);
+
+
+    }
+    else if(category[0] == 3){
+      _three = iterable.map((e) => Product.fromJson(e)).toList();
+      setState(RequestState.Idle);
+      await getProductCategory([4]);
+
+
+    }else{
+      _four = iterable.map((e) => Product.fromJson(e)).toList();
+      setState(RequestState.Idle);
+
+    }
 
   }
 }

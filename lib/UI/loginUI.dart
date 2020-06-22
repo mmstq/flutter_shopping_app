@@ -1,6 +1,6 @@
-import 'package:bookbuddy/UI/main_screen.dart';
-import 'package:bookbuddy/Utils/data.dart';
-import 'package:bookbuddy/noted/login.dart';
+import 'package:testcart/UI/main_screen.dart';
+import 'package:testcart/Utils/data.dart';
+import 'package:testcart/noted/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                 elevation: 0,
                 color: Theme.of(context).accentColor,
                 onPressed: () {
-                  Navigator.of(context).pushAndRemoveUntil(Data.routeSwitcher(context, LoginApp()), (route) => false);
+                  Navigator.of(context).push(Data.routeSwitcher(context, LoginApp()));
 
                 },
                 child: Container(

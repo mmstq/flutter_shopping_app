@@ -1,4 +1,4 @@
-name: bookbuddy
+name: testcart
 description: A new Flutter project.
 
 # The following defines the version and build number for your application.
@@ -25,30 +25,21 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   #  cupertino_icons: ^0.1.2
 
-  provider: ^2.0.0+1
-  cloud_firestore: ^0.12.7
-  path_provider: ^1.2.0
-  filesize: 1.0.4
+  provider: 4.1.3
   url_launcher: ^5.1.0
-  firebase_storage:  ^3.0.4
-  image_picker: ^0.6.1
   shared_preferences: ^0.5.3+4
-  firebase_auth: ^0.11.1+12
-  countdown: ^0.1.0
-  image: ^2.1.4
-  share: ^0.6.2+1
-  intl: ^0.15.2
   http:
   like_button: ^1.0.1
   get_it:
   upi_india:
-  rxdart: ^0.18.1
+  json_annotation:
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  build_runner:
+  json_serializable:
   flutter_launcher_icons: ^0.7.4
 
 flutter_icons:

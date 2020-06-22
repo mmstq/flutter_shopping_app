@@ -1,5 +1,3 @@
-import 'package:bookbuddy/Utils/data.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 void showNow(BuildContext context) {
@@ -18,11 +16,7 @@ void showNow(BuildContext context) {
         color: Colors.green.shade600,
       ),
       onPressed: () {
-        FirebaseAuth.instance.signOut().then((_) {
-          sharedPreference.setString('uid', null);
-          Navigator.of(context)
-              .pushNamedAndRemoveUntil('Login', (Route<dynamic> rout) => false);
-        });
+
       },
     ),
   );

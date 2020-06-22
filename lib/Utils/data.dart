@@ -13,7 +13,7 @@ final phoneHelperText = "Enter number w/o +91";
 final loginDescription = "TestCart is your online store for Mobiles, Fashion, Electronics, Home Appliances, Books, Home, Furniture, Grocery, Jewelry, Sporting goods and much more";
 
 
-enum RequestState {Busy, Idle}
+enum RequestState {Busy, Idle, Done}
 
 class Data{
   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -22,7 +22,7 @@ class Data{
   static Route routeSwitcher(BuildContext context, Widget pageToGo) {
     return PageRouteBuilder(
         pageBuilder: (context, animation, secondAnimation) => pageToGo,
-        transitionDuration: Duration(milliseconds: 300),
+        transitionDuration: Duration(milliseconds: 200),
         transitionsBuilder: (context, animation, secondAnimation, child) {
           var begin = Offset(1.0, 0.0);
           var end = Offset.zero;

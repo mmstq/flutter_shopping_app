@@ -1,8 +1,9 @@
-import 'package:bookbuddy/UI/detailscreen.dart';
-import 'package:bookbuddy/UI/loginUI.dart';
-import 'package:bookbuddy/UI/main_screen.dart';
-import 'package:bookbuddy/UI/splash_screen.dart';
-import 'package:bookbuddy/Utils/service.dart';
+import 'package:testcart/UI/detailscreen.dart';
+import 'package:testcart/UI/loginUI.dart';
+import 'package:testcart/UI/main_screen.dart';
+import 'package:testcart/UI/splash_screen.dart';
+import 'package:testcart/Utils/data.dart';
+import 'package:testcart/Utils/service.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,17 +18,17 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         'Login': (context) => LoginPage(),
-        'Buy': (context) => Buy(),
         'Main': (context) => MainScreen(),
         'Splash': (context) => SplashScreen(),
       },
       title: 'BookBuddy',
       theme: ThemeData(
+        fontFamily: fFamily,
         accentColor: Color(0xFFFFC107),
         primaryColor: Color(0xFFFFC107),
         brightness: Brightness.light,
         scaffoldBackgroundColor: Colors.blueGrey.shade50),
-      home: MainScreen(),
+      home: SplashScreen(),
     );
   }
 

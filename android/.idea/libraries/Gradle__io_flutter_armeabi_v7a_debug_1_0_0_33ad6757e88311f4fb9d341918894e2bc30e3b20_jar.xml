@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Gradle: io.flutter:armeabi_v7a_debug:1.0.0-33ad6757e88311f4fb9d341918894e2bc30e3b20@jar">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../../.gradle/caches/modules-2/files-2.1/io.flutter/armeabi_v7a_debug/1.0.0-33ad6757e88311f4fb9d341918894e2bc30e3b20/312b9be773a4b7c5cb2ae7febc32f8c1494d00a3/armeabi_v7a_debug-1.0.0-33ad6757e88311f4fb9d341918894e2bc30e3b20.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
